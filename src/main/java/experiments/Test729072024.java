@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.security.SecureRandom;
+import java.time.LocalDate;
 
 /**
  * some class information
@@ -18,12 +19,32 @@ public class Test729072024 {
 
 
     public static void main(String[] args) {
-        //System.out.println("My \u001B[34mfirst test!");
-        try {
-            System.out.println("\u001B[32mGENERATED COMBINATION: " + generateRamdomString(10));
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+
+      WeekDay today1 = WeekDay.FRIDAY;
+        System.out.println("Today is "+ today1);
+        switch (today1){
+            case MONDAY:
+                System.out.println("Today is monday");
+                break;
+            case TUESDAY:
+                System.out.println("Today is tuesday");
+                break;
+            case FRIDAY:
+                System.out.println("Today is friday");
+                break;
+            default:
+                System.out.println("Something wrong...");
+                break;
         }
+
+        LocalDate today = LocalDate.now();
+        java.time.DayOfWeek currentDay = today.getDayOfWeek();
+
+//        try {
+//            System.out.println("\u001B[32mGENERATED COMBINATION: " + generateRamdomString(10));
+//        }catch (IllegalArgumentException e){
+//            System.out.println(e.getMessage());
+//        }
         //int[] numbers = {2,5,0,12};
 //        for(int i = 0; i <10;i++){
 //            System.out.println("Number "+i);
