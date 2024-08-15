@@ -45,7 +45,7 @@ public class Test729072024 {
 //        }catch (IllegalArgumentException e){
 //            System.out.println(e.getMessage());
 //        }
-        //int[] numbers = {2,5,0,12};
+//        int[] numbers = {2,5,0,12};
 //        for(int i = 0; i <10;i++){
 //            System.out.println("Number "+i);
 //        }
@@ -57,16 +57,16 @@ public class Test729072024 {
 //        boolean b = true;
 //        char c = 'a';
 //        char c2 = 'b';
-             // System.out.println("Result = " + theMethodGeneratesAString(2,2));
-              //dayPicker(2);
+//              System.out.println("Result = " + theMethodGeneratesAString(2,2));
+//              dayPicker(2);
 //        System.out.println("INTEGER " + add(12,12));
 //        System.out.println("DOUBLE " + add(12.5,12.7));
     }
 
     /**
-     *
-     * @param length
-     * @return
+     * This method generates random string
+     * @param length is int 1-1000
+     * @return random string
      */
     public static String generateRamdomString(int length){
         if(length <= 0 || length > 1000){
