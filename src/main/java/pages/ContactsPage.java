@@ -12,6 +12,9 @@ public class ContactsPage extends BasePage{
     WebElement signOutButton;
 
 
+    public WebElement getSignOutButton() {
+        return signOutButton;
+    }
 
     public ContactsPage(WebDriver driver){
         setDriver(driver);

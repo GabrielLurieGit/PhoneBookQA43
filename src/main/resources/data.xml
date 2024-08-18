@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="mypass"> Tr43123456!</entry>
+<entry key="passwordInvalid1">Psw0rd!</entry>
+<entry key="emailInvalid1">@mail.com</entry>
+<entry key="myuser">bigbrother@gmail.com</entry>
+</properties>

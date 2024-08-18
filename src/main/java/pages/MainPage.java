@@ -10,11 +10,17 @@ public class MainPage extends BasePage{
 // TASK
     @FindBy(xpath = "//a[contains(text(),'LOGIN')]")
     WebElement loginTopMenuButton;
+
+
     public MainPage(WebDriver driver){
         setDriver(driver);
         driver.get("https://telranedu.web.app/");
         PageFactory.initElements(new AjaxElementLocatorFactory(driver,15),this);
     }
+
+
+
+
 
     public LoginPage clickByLoginButton(){
         loginTopMenuButton.click();
