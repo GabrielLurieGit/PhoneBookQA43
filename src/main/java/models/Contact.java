@@ -1,8 +1,15 @@
 package models;
 
+import helpers.AddressGenerator;
+import helpers.EmailGenerator;
+import helpers.NameAndLastNameGenerator;
+import helpers.PhoneNumberGenerator;
+import kotlin.jvm.internal.SerializedIr;
+
+import java.io.*;
 import java.util.Objects;
 
-public class Contact {
+public class Contact implements Serializable {
      String name;
      String lastName;
      String phone;
@@ -96,4 +103,34 @@ public class Contact {
     }
 
 
+    public static void serializationContact(Contact contact,String path) throws IOException {
+        ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(path));
+        outputStream.writeObject(contact);
+    }
+
+    public static Contact deserializationContact(String path) throws IOException, ClassNotFoundException {
+        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(path));
+        return (Contact)inputStream.readObject();
+    }
+
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Contact contact = new Contact();
+        contact.setName(NameAndLastNameGenerator.generateName());
+        contact.setLastName(NameAndLastNameGenerator.generateName());
+        contact.setPhone(PhoneNumberGenerator.generatePhoneNumber());
+        contact.setEmail(EmailGenerator.generateEmail(5,5,3));
+        contact.setAddress(AddressGenerator.generateAddress());
+        contact.setDescription("testdesc");
+        System.out.println(contact.toString());
+        serializationContact(contact,"testcontact.ser");
+        System.out.println("DE: "+deserializationContact("testcontact.ser").toString());
+
+
+
+
+
+
+
+
+    }
 }

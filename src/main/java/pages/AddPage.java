@@ -35,7 +35,7 @@ public class AddPage extends BasePage{
     WebElement saveButton;
 
 
-    public void fillContactForm(Contact contact){
+    public void fillContactFormAndSave(Contact contact){
         nameField.sendKeys(contact.getName());
         lastNameField.sendKeys(contact.getLastName());
         if(contact.getPhone().length() >= 10 || contact.getPhone().length() <= 15){

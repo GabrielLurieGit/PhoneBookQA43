@@ -2,6 +2,13 @@ package helpers;
 
 public class EmailGenerator {
 
+    public enum EmailType{
+        VALID,
+        WITHOUT_AT,
+        WITHOUT_USERNAME,
+        WITHOUT_DOMAIN,WITHOUT_DOT
+
+    }
     public static void main(String[] args) {
 
         System.out.println(generateEmail(10,5,3));
@@ -24,6 +31,11 @@ public class EmailGenerator {
             email.append(randomChar());
         }
         return email.toString();
+    }
+
+    private static char randomInvalidChar(){
+        String invalidChars = ";,!@#$%^&()~\"\\";
+        return invalidChars.charAt((int)(Math.random()*invalidChars.length()));
     }
 
 
