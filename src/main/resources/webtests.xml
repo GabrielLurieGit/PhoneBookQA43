@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.1.dtd" >
+<suite name="TestsGroup1">
+    <test name ="PhoneBookWeb">
+        <parameter name="browser" value="firefox"></parameter>
+        <classes>
+            <class name="web.PhoneBookTests">
+                <methods>
+                    <include name="unsuccessfulRegWithoutPassword"/>
+                    <include name="successfullLogin"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

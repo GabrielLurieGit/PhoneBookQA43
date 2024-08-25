@@ -1,6 +1,7 @@
 package web;
 
 import config.BaseTest;
+import enums.ContactField;
 import enums.TopMenuItem;
 import helpers.*;
 import interfaces.TestHelper;
@@ -112,9 +113,7 @@ public class PhoneBookTests extends BaseTest implements TestHelper {
         loginPage.fillEmailField(PropertiesReaderXML.getProperties(MY_USER,XML_DATA_FILE))
                 .fillPasswordField(PropertiesReaderXML.getProperties(MY_PASSWORD,XML_DATA_FILE))
                 .clickByLoginButton();
-
         AddPage addPage = BasePage.openTopMenuItem(TopMenuItem.ADD);
-
         Contact contact = new Contact(NameAndLastNameGenerator.generateName(),
                 NameAndLastNameGenerator.generateLastName(),
                 PhoneNumberGenerator.generatePhoneNumber(),
@@ -122,24 +121,15 @@ public class PhoneBookTests extends BaseTest implements TestHelper {
                 AddressGenerator.generateAddress(),"Text description");
         System.out.println("Contact current" + contact.toString());
         addPage.fillContactFormAndSave(contact);
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-        WebElement nameContact = wait.
-                until(ExpectedConditions.visibilityOfElementLocated
-                        (By.xpath("//h2[contains(text(),'"+contact.getName().toString()+"')]")));
-        nameContact.click();
-        WebElement editButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(text(),'Edit')]")));
-        editButton.click();
-        WebElement lastNameField = wait.
-                until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Last Name']")));
-        lastNameField.clear();
-        lastNameField.sendKeys("McGregor");
-        String lastNameFieldValue = lastNameField.getAttribute("value");
-        contact.setLastName(lastNameFieldValue);
-        WebElement saveButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(text(),'Save')]")));
-        saveButton.click();
         ContactsPage contactsPage = new ContactsPage(getDriver());
-        System.out.println("Contact after editing" + contact.toString());
+       String myNewValue = contactsPage.findOpenContactAndChangeFieldValue(contact, ContactField.EMAIL,EmailGenerator.generateEmail(5,5,3));
+        contactsPage.clickSaveButton(myNewValue);
+        System.out.println("NEW VALUE: " + myNewValue);
+
+        //Assert.....
     }
+
+
 
 
     @Test
