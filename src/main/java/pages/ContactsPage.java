@@ -22,6 +22,10 @@ public class ContactsPage extends BasePage{
     @FindBy(xpath = "//button[contains(text(),'Save')]")
     WebElement saveButton;
 
+    @FindBy(xpath = "//button[contains(text(),'Remove')]")
+    WebElement removeButton;
+
+
 
     public WebElement getSignOutButton() {
         return signOutButton;
@@ -129,5 +133,28 @@ public class ContactsPage extends BasePage{
     }
 
 
+    public void deleteContact(Contact contact){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement contactFromTheList = wait.
+                until(ExpectedConditions.visibilityOfElementLocated(By.
+                        xpath("//div[h2[contains(text(),'"+contact.getName().toString()+"')] " +
+                                "and h3[contains(text(),'"+contact.getPhone().toString()+"')]]")));
+        contactFromTheList.click();
+        removeButton.click();
+        wait.until(ExpectedConditions.invisibilityOf(contactFromTheList));
+    }
 
+    public boolean isContactExists(Contact contact){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        try {
+            boolean contactFromTheList = wait.
+                    until(ExpectedConditions.invisibilityOfElementLocated(By.
+                            xpath("//div[h2[contains(text(),'"+contact.getName().toString()+"')] " +
+                                    "and h3[contains(text(),'"+contact.getPhone().toString()+"')]]")));
+            return contactFromTheList;
+        }catch (RuntimeException e){
+            return false;
+        }
+
+    }
 }

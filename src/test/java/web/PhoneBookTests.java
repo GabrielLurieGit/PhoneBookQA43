@@ -125,8 +125,7 @@ public class PhoneBookTests extends BaseTest implements TestHelper {
        String myNewValue = contactsPage.findOpenContactAndChangeFieldValue(contact, ContactField.EMAIL,EmailGenerator.generateEmail(5,5,3));
         contactsPage.clickSaveButton(myNewValue);
         System.out.println("NEW VALUE: " + myNewValue);
-
-        //Assert.....
+        Assert.assertNotEquals(myNewValue,contact.getEmail());
     }
 
 
@@ -150,9 +149,12 @@ public class PhoneBookTests extends BaseTest implements TestHelper {
         addPage.fillContactFormAndSave(contact);
         Contact.serializationContact(contact,"initContact.dat");
         Contact deserealizedContact = Contact.deserializationContact("initContact.dat");
+        System.out.println("Deserealized contact: "+deserealizedContact);
+        ContactsPage contactsPage = new ContactsPage(getDriver());
+        contactsPage.deleteContact(contact);
+        boolean res = contactsPage.isContactExists(contact);
+        Assert.assertTrue(res);
     }
-
-
 
 
 }
