@@ -5,4 +5,5 @@
 <entry key="passwordInvalid1">Psw0rd!</entry>
 <entry key="emailInvalid1">@mail.com</entry>
 <entry key="myuser">bigbrother@gmail.com</entry>
+<entry key="token">eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYmlnYnJvdGhlckBnbWFpbC5jb20iLCJpc3MiOiJSZWd1bGFpdCIsImV4cCI6MTcyNTI5MzAzOSwiaWF0IjoxNzI0NjkzMDM5fQ.2o0huRgi7dSni3MUJsjRRubuXTWZ0AHGROVbKxaiPtk</entry>
 </properties>

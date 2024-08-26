@@ -141,7 +141,6 @@ public class ContactsPage extends BasePage{
                                 "and h3[contains(text(),'"+contact.getPhone().toString()+"')]]")));
         contactFromTheList.click();
         removeButton.click();
-        wait.until(ExpectedConditions.invisibilityOf(contactFromTheList));
     }
 
     public boolean isContactExists(Contact contact){
