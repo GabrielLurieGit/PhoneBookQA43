@@ -39,4 +39,45 @@ public class RegistrationTests implements TestHelper {
             System.out.println(response.code());
         }
     }
+
+    @Test
+    public void registrationTestNegative() throws IOException {
+    AuthenticationRequestModel requestModel = AuthenticationRequestModel
+            .username(EmailGenerator.generateEmail(5,5,3))
+            .password(INVALID_PASS);
+    RequestBody requestBody = RequestBody.create(GSON.toJson(requestModel),JSON);
+    Request request = new Request.Builder()
+            .url(BASE_URL+REGISTRATION_PATH)
+            .post(requestBody)
+            .build();
+        System.out.println("Request "+request.toString());
+    Response response = CLIENT.newCall(request).execute();
+        System.out.println(response.code());
+    if (!response.isSuccessful()){
+        ErrorModel errorModel = GSON.fromJson(response.body().string(), ErrorModel.class);
+        System.out.println(errorModel.getStatus());
+        Assert.assertEquals(response.code(),400);
+    }else{}
+    }
+
+
+    @Test
+    public void registrationDuplicateUserTestNegative() throws IOException {
+    AuthenticationRequestModel requestModel = AuthenticationRequestModel
+            .username(PropertiesReaderXML.getProperties(MY_USER,XML_DATA_FILE))
+            .password(PropertiesReaderXML.getProperties(MY_PASSWORD,XML_DATA_FILE));
+    RequestBody requestBody = RequestBody.create(GSON.toJson(requestModel),JSON);
+    Request request = new Request.Builder()
+            .url(BASE_URL+REGISTRATION_PATH)
+            .post(requestBody)
+            .build();
+        System.out.println("Request "+request.toString());
+        Response response = CLIENT.newCall(request).execute();
+        System.out.println(response.code());
+        if (!response.isSuccessful()){
+            ErrorModel errorModel = GSON.fromJson(response.body().string(), ErrorModel.class);
+            System.out.println(errorModel.getStatus());
+            Assert.assertEquals(response.code(),409);
+        }else {}
+    }
 }

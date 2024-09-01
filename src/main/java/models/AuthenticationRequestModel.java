@@ -3,7 +3,6 @@ package models;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 
-
 public class AuthenticationRequestModel {
 
     private  String username;
