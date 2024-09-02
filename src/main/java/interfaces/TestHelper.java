@@ -19,6 +19,11 @@ public interface TestHelper {
     public static final String BASE_URL = "https://contactapp-telran-backend.herokuapp.com";
     public static final String LOGIN_PATH = "/v1/user/login/usernamepassword";
     public static final String REGISTRATION_PATH = "/v1/user/registration/usernamepassword";
+    public static final String GET_ALL_CONTACTS = "/v1/contacts";
+    public static final String ADD_NEW_CONTACT = "/v1/contacts";
+    public static final String DELETE_CONTACT = "/v1/contacts/";
+    public static final String AUTHORIZATION_HEADER= "Authorization";
+
 
 
 }
