@@ -17,7 +17,7 @@ public class getAllContactsTest implements TestHelper {
 
 
     @Test
-            public void getAllConctacts() throws IOException {
+            public void getAllContacts() throws IOException {
         Request request = new Request.Builder()
                 .url(BASE_URL+GET_ALL_CONTACTS)
                 .addHeader(AUTHORIZATION_HEADER, PropertiesReaderXML.getProperties("token",XML_DATA_FILE))
@@ -28,7 +28,7 @@ public class getAllContactsTest implements TestHelper {
         System.out.println(responseBody);
         ContactListModel contacts = GSON.fromJson(responseBody, ContactListModel.class);
         for(Contact contact: contacts.getContacts()){
-            System.out.println(contact.getEmail());
+            System.out.println(contact);
             System.out.println("===============================");
             Assert.assertTrue(response.isSuccessful());
         }
