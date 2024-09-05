@@ -1,22 +1,91 @@
 package models;
 
 import helpers.AddressGenerator;
+import helpers.AddressGenerator;
 import helpers.EmailGenerator;
 import helpers.NameAndLastNameGenerator;
 import helpers.PhoneNumberGenerator;
-import kotlin.jvm.internal.SerializedIr;
 
 import java.io.*;
 import java.util.Objects;
 
 public class Contact implements Serializable {
+
     String id;
-     String name;
-     String lastName;
-     String phone;
-     String email;
-     String address;
-     String description;
+    String name;
+    String lastName;
+    String phone;
+    String email;
+    String address;
+    String description;
+
+    public Contact(String name, String lastName, String phone, String email, String address) {
+        this.name = name;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
+    public Contact(String id, String name, String lastName, String phone, String email, String address, String description) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.description = description;
+    }
+
+    public Contact(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Contact contact)) return false;
+        return Objects.equals(getName(), contact.getName()) && Objects.equals(getLastName(), contact.getLastName()) && Objects.equals(getPhone(), contact.getPhone()) && Objects.equals(getEmail(), contact.getEmail()) && Objects.equals(getAddress(), contact.getAddress()) && Objects.equals(getDescription(), contact.getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getLastName(), getPhone(), getEmail(), getAddress(), getDescription());
+    }
+
+    public Contact() {
+    }
+
+    public Contact(String name, String lastName, String phone, String email, String address, String description) {
+        this.name = name;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.description = description;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -66,90 +135,27 @@ public class Contact implements Serializable {
         this.description = description;
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "Contact{" +
-                "name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Contact contact)) return false;
-        return Objects.equals(getName(), contact.getName()) && Objects.equals(getLastName(), contact.getLastName()) && Objects.equals(getPhone(), contact.getPhone()) && Objects.equals(getEmail(), contact.getEmail()) && Objects.equals(getAddress(), contact.getAddress()) && Objects.equals(getDescription(), contact.getDescription());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getName(), getLastName(), getPhone(), getEmail(), getAddress(), getDescription());
-    }
-
-    public Contact() {
-    }
-
-    public Contact(String name, String lastName, String phone, String email, String address, String description) {
-        this.name = name;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.description = description;
-    }
-
-
-    public Contact(String id, String name, String lastName, String phone, String email, String address, String description) {
-        this.id = id;
-        this.name = name;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.description = description;
-    }
-
-
-    public static void serializationContact(Contact contact,String path) throws IOException {
-        ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(path));
+    public static void serializationContact(Contact contact, String fileName) throws IOException {
+        ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName));
         outputStream.writeObject(contact);
     }
-
-    public static Contact deserializationContact(String path) throws IOException, ClassNotFoundException {
-        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(path));
-        return (Contact)inputStream.readObject();
+    public static Contact deserializationContact(String fileName) throws IOException, ClassNotFoundException {
+        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName));
+        return (Contact) inputStream.readObject();
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Contact contact = new Contact();
         contact.setName(NameAndLastNameGenerator.generateName());
-        contact.setLastName(NameAndLastNameGenerator.generateName());
+        contact.setLastName(NameAndLastNameGenerator.generateLastName());
         contact.setPhone(PhoneNumberGenerator.generatePhoneNumber());
         contact.setEmail(EmailGenerator.generateEmail(5,5,3));
         contact.setAddress(AddressGenerator.generateAddress());
         contact.setDescription("testdesc");
         System.out.println(contact.toString());
-        serializationContact(contact,"testcontact.ser");
-        System.out.println("DE: "+deserializationContact("testcontact.ser").toString());
-
-
-
-
-
-
-
-
+        serializationContact(contact, "testcontact.ser");
+        System.out.println("DE: "+deserializationContact("testcontact.dat").toString());
     }
+
 }

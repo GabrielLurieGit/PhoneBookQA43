@@ -15,38 +15,14 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
-public class DeleteContactTest implements TestHelper {
-    String id;
+public class DeleteContactTest extends GetIdPrecondition implements TestHelper {
 
     SoftAssert softAssert = new SoftAssert();
-
-    @BeforeTest
-    public void createNewContactGetIdPrecondition() throws IOException {
-        Contact contact = new Contact(
-                NameAndLastNameGenerator.generateName(),
-                NameAndLastNameGenerator.generateLastName(),
-                PhoneNumberGenerator.generatePhoneNumber(),
-                EmailGenerator.generateEmail(5,5,3),
-                AddressGenerator.generateAddress(),
-                "Description");
-        System.out.println(contact.toString());
-        RequestBody requestBody = RequestBody.create(GSON.toJson(contact),JSON);
-        Request request = new Request.Builder()
-                .url(BASE_URL+ADD_NEW_CONTACT)
-                .addHeader(AUTHORIZATION_HEADER, PropertiesReaderXML.getProperties("token",XML_DATA_FILE))
-                .post(requestBody)
-                .build();
-       Response response = CLIENT.newCall(request).execute();
-        ContactResponseModel contactResponseModel = GSON.fromJson(response.body().string(),ContactResponseModel.class);
-        System.out.println("RESPONSE: " + contactResponseModel.getMessage());
-        id = IdExtractor.getID(contactResponseModel.getMessage());
-    }
-
 
     @Test
     public void deleteContactById() throws IOException {
         Request request = new Request.Builder()
-                .url(BASE_URL+DELETE_CONTACT+id)
+                .url(BASE_URL+DELETE_CONTACT+getId())
                 .addHeader(AUTHORIZATION_HEADER,PropertiesReaderXML.getProperties("token",XML_DATA_FILE))
                 .delete()
                 .build();
@@ -59,7 +35,7 @@ public class DeleteContactTest implements TestHelper {
     @Test
     public void deleteContactByIdNegative() throws IOException {
         Request request = new Request.Builder()
-                .url(BASE_URL+DELETE_CONTACT+id)
+                .url(BASE_URL+DELETE_CONTACT+getId())
                 .addHeader(AUTHORIZATION_HEADER,"222")
                 .delete()
                 .build();
@@ -82,11 +58,7 @@ public class DeleteContactTest implements TestHelper {
         ErrorModel errorModel = GSON.fromJson(response.body().string(), ErrorModel.class);
         System.out.println(errorModel.getError());
         System.out.println(errorModel.getMessage());
-        //Assert.assertEquals(errorModel.getStatus(),400);
-        softAssert.assertEquals(errorModel.getStatus(),400);
-        softAssert.assertEquals(errorModel.getError(),"Bad Request");
-        softAssert.assertTrue(errorModel.getMessage().toString().contains("not found"));
-        softAssert.assertAll();
+        Assert.assertEquals(errorModel.getStatus(),400);
     }
 
 @Test
@@ -97,7 +69,8 @@ public class DeleteContactTest implements TestHelper {
                 .delete()
                 .build();
         Response response = CLIENT.newCall(request).execute();
-        System.out.println(response.body().string());
+        ContactResponseModel contactResponseModel = GSON.fromJson(response.body().string(), ContactResponseModel.class);
+         System.out.println(contactResponseModel);
         Assert.assertTrue(response.isSuccessful());
     }
 

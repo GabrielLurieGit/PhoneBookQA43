@@ -3,6 +3,7 @@
 <properties>
 <entry key="mypass"> Tr43123456!</entry>
 <entry key="passwordInvalid1">Psw0rd!</entry>
+<entry key="tokenrestassured">eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYmlnYnJvdGhlckBnbWFpbC5jb20iLCJpc3MiOiJSZWd1bGFpdCIsImV4cCI6MTcyNjE1OTA4MSwiaWF0IjoxNzI1NTU5MDgxfQ.MyWjscMgVxAEbibRkRpyILyRZo5aqMCY9dIquvEbzxY</entry>
 <entry key="emailInvalid1">@mail.com</entry>
 <entry key="myuser">bigbrother@gmail.com</entry>
 <entry key="token">eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYmlnYnJvdGhlckBnbWFpbC5jb20iLCJpc3MiOiJSZWd1bGFpdCIsImV4cCI6MTcyNjA0NjUyNiwiaWF0IjoxNzI1NDQ2NTI2fQ.El_Wl4DJ3RkJNx8LyL1lwM1u_OQdgUXYzlVkpi3P9Xs</entry>

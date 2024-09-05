@@ -28,7 +28,7 @@ public class getAllContactsTest implements TestHelper {
         System.out.println(responseBody);
         ContactListModel contacts = GSON.fromJson(responseBody, ContactListModel.class);
         for(Contact contact: contacts.getContacts()){
-            System.out.println(contact);
+            System.out.println(contact.getName()+ "  "+contact.getLastName()+" "+contact.getId());
             System.out.println("===============================");
             Assert.assertTrue(response.isSuccessful());
         }

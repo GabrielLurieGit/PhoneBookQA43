@@ -27,6 +27,9 @@ public class ErrorModel {
         this.path = path;
     }
 
+    public ErrorModel() {
+    }
+
     public String getTimestamp() {
         return timestamp;
     }
