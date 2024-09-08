@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class AddPage extends BasePage{
-    @FindBy(xpath = "//input[@placeholder='Name']")
+    @FindBy(xpath = "//input[@placeholder='Name']") ////input[@class='UiEmailSignupstyles__InputEmail-sc-9nggyw-1 ZIPtJ']
     WebElement nameField;
 
     @FindBy(xpath = "//input[@placeholder='Last Name']")

@@ -65,7 +65,7 @@ public class RegistrationTests implements TestHelper {
     public void registrationDuplicateUserTestNegative() throws IOException {
     AuthenticationRequestModel requestModel = AuthenticationRequestModel
             .username(PropertiesReaderXML.getProperties(MY_USER,XML_DATA_FILE))
-            .password(PropertiesReaderXML.getProperties(MY_PASSWORD,XML_DATA_FILE));
+            .password(PropertiesReaderXML.getProperties(INVALID_PASS2,XML_DATA_FILE)); //but with MY_PASSWORD 400
     RequestBody requestBody = RequestBody.create(GSON.toJson(requestModel),JSON);
     Request request = new Request.Builder()
             .url(BASE_URL+REGISTRATION_PATH)

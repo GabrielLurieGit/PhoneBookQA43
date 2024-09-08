@@ -8,7 +8,7 @@ import java.util.Properties;
 public class PropertiesWriterXML {
     public static void main(String[] args) {
         PropertiesWriterXML propertiesWriter = new PropertiesWriterXML();
-        propertiesWriter.setProperty("passwordInvalid1","Psw0rd!",false,"src/main/resources/data.xml");
+        propertiesWriter.setProperty("passwordInvalid2","Pasw0rd!",false,"src/main/resources/data.xml");
     }
     Properties properties = new Properties();
 

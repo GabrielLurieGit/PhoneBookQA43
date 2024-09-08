@@ -9,6 +9,8 @@ public interface TestHelper {
     public static final String MY_USER = "myuser";
     public static final String MY_PASSWORD = "mypass";
     public static final String INVALID_PASS = "passwordInvalid1";
+    public static final String INVALID_PASS2 = "passwordInvalid2";
+
     public static final String INVALID_EMAIL = "emailInvalid1";
     public static final String VALIDATION_MESSAGE1 = "Wrong email or password";
 
