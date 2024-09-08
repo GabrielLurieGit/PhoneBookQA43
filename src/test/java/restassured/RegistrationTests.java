@@ -43,6 +43,20 @@ public class RegistrationTests implements TestHelper {
     }
 
 
+    @Test
+    public void registrationNegativeInvalidEmail(){
+        AuthenticationRequestModel requestModel = AuthenticationRequestModel
+                .username(PropertiesReaderXML.getProperties(INVALID_EMAIL,XML_DATA_FILE))
+                .password(PropertiesReaderXML.getProperties(MY_PASSWORD,XML_DATA_FILE));
+        ErrorModel errorModel = given().body(requestModel).contentType(ContentType.JSON)
+                .when()
+                .post(BASE_URL+REGISTRATION_PATH)
+                .then().assertThat().statusCode(400)
+                .extract()
+                .as(ErrorModel.class);
+        System.out.println(errorModel.getError());
+    }
+
 
 
     @Test
