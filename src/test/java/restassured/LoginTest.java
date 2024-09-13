@@ -4,6 +4,8 @@ import config.TestData;
 import helpers.PropertiesReaderXML;
 import helpers.PropertiesWriterXML;
 import interfaces.TestHelper;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import models.AuthenticationRequestModel;
@@ -53,6 +55,7 @@ public class LoginTest implements TestHelper {
 
 ApiSteps apiSteps = new ApiSteps();
     @Test(description = "login positive steps")
+    @Severity(SeverityLevel.CRITICAL)
     public void loginPositiveSteps(){
        String username = PropertiesReaderXML.getProperties("myuser",XML_DATA_FILE);
        String password = PropertiesReaderXML.getProperties("mypass",XML_DATA_FILE);
