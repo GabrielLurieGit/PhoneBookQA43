@@ -48,13 +48,19 @@ public class RegistrationTests implements TestHelper {
         AuthenticationRequestModel requestModel = AuthenticationRequestModel
                 .username(PropertiesReaderXML.getProperties(INVALID_EMAIL,XML_DATA_FILE))
                 .password(PropertiesReaderXML.getProperties(MY_PASSWORD,XML_DATA_FILE));
-        ErrorModel errorModel = given().body(requestModel).contentType(ContentType.JSON)
+        ErrorModel errorModel = given().body(requestModel).contentType(ContentType.JSON)  //Response response =
                 .when()
                 .post(BASE_URL+REGISTRATION_PATH)
                 .then().assertThat().statusCode(400)
-                .extract()
+                .extract() // extract().response();
                 .as(ErrorModel.class);
         System.out.println(errorModel.getError());
+        //System.out.println(response.getBody().asString());
+        // String response = jsonPath().getString("message.username")
+        //Assert.assertTrue(message.contains(""must be a well-formed))
+       // System.out.println("Time: " + response.getTime());
+       // System.out.println("Time: " + response.getHeaders());
+       // System.out.println("Time: " + response.getStatusLine());
     }
 
 

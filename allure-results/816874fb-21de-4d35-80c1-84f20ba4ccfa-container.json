@@ -1,1 +1,0 @@
-{"uuid":"816874fb-21de-4d35-80c1-84f20ba4ccfa","name":"PhoneBook_QA43","children":["ec9762fb-f0e1-4d49-b6d4-361bd9a8bb93"],"befores":[{"name":"createNewContactGetIdPrecondition","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1725551008921,"stop":1725551010531}],"afters":[],"start":1725551008879,"stop":1725551010866}
