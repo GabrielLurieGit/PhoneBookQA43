@@ -23,7 +23,7 @@ public class UpdateContact implements TestHelper {
                 "Text desc"
         );
         RestAssured.baseURI = BASE_URL+UPDATE_CONTACT;
-       String message = given().header(AUTHORIZATION_HEADER, PropertiesReaderXML.getProperties("token",XML_DATA_FILE))
+       String message = given().header(AUTHORIZATION_HEADER, PropertiesReaderXML.getProperties("tokenrestassured",XML_DATA_FILE))
                 .body(contact)
                 .contentType(ContentType.JSON)
                 .when()
