@@ -5,10 +5,12 @@ import helpers.PropertiesReaderXML;
 import helpers.PropertiesWriterXML;
 import interfaces.TestHelper;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import models.AuthenticationRequestModel;
 import models.AuthenticationResponseModel;
 import models.ErrorModel;
 import org.testng.annotations.Test;
+import restassured.steps.ApiSteps;
 
 import static io.restassured.RestAssured.given;
 
@@ -49,7 +51,17 @@ public class LoginTest implements TestHelper {
         System.out.println(errorModel.getMessage());
     }
 
+ApiSteps apiSteps = new ApiSteps();
+    @Test(description = "login positive steps")
+    public void loginPositiveSteps(){
+       String username = PropertiesReaderXML.getProperties("myuser",XML_DATA_FILE);
+       String password = PropertiesReaderXML.getProperties("mypass",XML_DATA_FILE);
 
+      AuthenticationRequestModel requestModel = apiSteps.preparedRequest(username,password);
+      Response response = apiSteps.sendLoginRequest(requestModel,BASE_URL+LOGIN_PATH);
+     AuthenticationResponseModel responseModel = response.as(AuthenticationResponseModel.class);
+     apiSteps.saveToken(responseModel.getToken());
+    }
 
 
 }
